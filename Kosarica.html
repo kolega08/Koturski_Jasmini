@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koturski Jasmini</title>
+    <link rel="stylesheet" href="Koturi.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
+    
+
+    <nav>
+        <ul>
+            <li><a href="Onama.html">O nama</a></li>
+            <li><a href="Nasa Polja.html">Nasa Polja</a></li>
+            <li><a href="Cvijece.html">Cvijece</a></li>
+            <li><a href="Buketi.html">Buketi</a></li>
+            <li><a href="Lokacija.html">Lokacija</a></li>
+            <li><a href="Kontakt.html">Kontakt</a></li>
+    
+        </ul>
+     
+    </nav>
+           <div>
+    <h1> <li><a href="koturski jasmini.html">Koturski Jasmini</a></li> </h1>
+    <a href="Kosarica.html" class="kosarica-gumb">
+        🛒 <span>Košarica</span>
+    </a>
+</div>
+    </div>
+</div>
+  <h2>🛒 Vaša košarica</h2>
+ 
+    <!-- ── Glavna sekcija ── -->
+    <div class="kosarica-stranica" id="kosarica-stranica">
+ 
+        <!-- LIJEVO: Košarica -->
+        <div class="kosarica-odjeljak">
+            <h3 class="sekcija-naslov">Artikli</h3>
+ 
+            <div id="artikli-lista">
+ 
+                <div class="artikl" data-cijena="45" data-naziv="Crvene ruže">
+                    <div class="artikl-emoji">🌹</div>
+                    <div class="artikl-info">
+                        <div class="artikl-naziv">Crvene ruže</div>
+                        <div class="artikl-cijena-kom">45,00 € / kom</div>
+                    </div>
+                    <div class="kolicina-ctrl">
+                        <button onclick="promijeniKolicinu(this, -1)">−</button>
+                        <span class="kolicina-broj">1</span>
+                        <button onclick="promijeniKolicinu(this, 1)">+</button>
+                    </div>
+                    <div class="artikl-ukupno">45,00 €</div>
+                    <button class="ukloni-gumb" onclick="ukloniArtikl(this)" title="Ukloni">✕</button>
+                </div>
+ 
+                <div class="artikl" data-cijena="38" data-naziv="Bijeli ljiljani">
+                    <div class="artikl-emoji">🌷</div>
+                    <div class="artikl-info">
+                        <div class="artikl-naziv">Bijeli ljiljani</div>
+                        <div class="artikl-cijena-kom">38,00 € / kom</div>
+                    </div>
+                    <div class="kolicina-ctrl">
+                        <button onclick="promijeniKolicinu(this, -1)">−</button>
+                        <span class="kolicina-broj">1</span>
+                        <button onclick="promijeniKolicinu(this, 1)">+</button>
+                    </div>
+                    <div class="artikl-ukupno">38,00 €</div>
+                    <button class="ukloni-gumb" onclick="ukloniArtikl(this)" title="Ukloni">✕</button>
+                </div>
+ 
+                <div class="artikl" data-cijena="52" data-naziv="Proljetni mix">
+                    <div class="artikl-emoji">💐</div>
+                    <div class="artikl-info">
+                        <div class="artikl-naziv">Proljetni mix</div>
+                        <div class="artikl-cijena-kom">52,00 € / kom</div>
+                    </div>
+                    <div class="kolicina-ctrl">
+                        <button onclick="promijeniKolicinu(this, -1)">−</button>
+                        <span class="kolicina-broj">1</span>
+                        <button onclick="promijeniKolicinu(this, 1)">+</button>
+                    </div>
+                    <div class="artikl-ukupno">52,00 €</div>
+                    <button class="ukloni-gumb" onclick="ukloniArtikl(this)" title="Ukloni">✕</button>
+                </div>
+ 
+            </div>
+ 
+            <p class="prazna-kosarica" id="prazna-poruka">Košarica je prazna 🌿</p>
+ 
+            <!-- Dostava -->
+            <div class="dostava-opcije">
+                <span class="dostava-label">Način dostave</span>
+                <div class="dostava-radio">
+                    <label>
+                        <input type="radio" name="dostava" value="5" checked onchange="azurirajZbroj()">
+                        🚚 Dostava na kućnu adresu
+                        <span class="dostava-cijena">5,00 €</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="dostava" value="0" onchange="azurirajZbroj()">
+                        🌿 Preuzimanje na farmi
+                        <span class="dostava-cijena">Besplatno</span>
+                    </label>
+                </div>
+            </div>
+ 
+            <!-- Zbroj -->
+            <div class="kosarica-zbroj">
+                <div class="zbroj-redak">
+                    <span>Međuzbroj</span>
+                    <span id="medjuzbroj">135,00 €</span>
+                </div>
+                <div class="zbroj-redak">
+                    <span>Dostava</span>
+                    <span id="dostava-iznos">5,00 €</span>
+                </div>
+                <div class="zbroj-ukupno">
+                    <span>Ukupno</span>
+                    <span id="ukupno">140,00 €</span>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- DESNO: Obrazac za plaćanje -->
+        <div class="placanje-odjeljak">
+            <h3 class="sekcija-naslov">Podaci za dostavu</h3>
+ 
+            <div class="forma-red">
+                <div class="forma-grupa">
+                    <label class="forma-label">Ime</label>
+                    <input type="text" class="forma-input" placeholder="Ana" id="ime">
+                </div>
+                <div class="forma-grupa">
+                    <label class="forma-label">Prezime</label>
+                    <input type="text" class="forma-input" placeholder="Horvat" id="prezime">
+                </div>
+            </div>
+ 
+            <div class="forma-grupa">
+                <label class="forma-label">E-mail adresa</label>
+                <input type="email" class="forma-input" placeholder="ana@email.com" id="email">
+            </div>
+ 
+            <div class="forma-grupa">
+                <label class="forma-label">Broj telefona</label>
+                <input type="tel" class="forma-input" placeholder="+385 91 234 5678" id="telefon">
+            </div>
+ 
+            <div class="forma-grupa">
+                <label class="forma-label">Ulica i kućni broj</label>
+                <input type="text" class="forma-input" placeholder="Ilica 42" id="adresa">
+            </div>
+ 
+            <div class="forma-red">
+                <div class="forma-grupa">
+                    <label class="forma-label">Poštanski broj</label>
+                    <input type="text" class="forma-input" placeholder="10000" id="postanski">
+                </div>
+                <div class="forma-grupa">
+                    <label class="forma-label">Grad</label>
+                    <input type="text" class="forma-input" placeholder="Zagreb" id="grad">
+                </div>
+            </div>
+ 
+            <div class="forma-grupa">
+                <label class="forma-label">Napomena (neobavezno)</label>
+                <input type="text" class="forma-input" placeholder="npr. ostavi na vratima..." id="napomena">
+            </div>
+ 
+            <!-- Način plaćanja -->
+            <div class="forma-razdjelnik">Način plaćanja</div>
+ 
+            <div class="nacin-placanja">
+                <button class="placanje-opcija aktivan" onclick="odaberiPlacanje(this, 'kartica')">
+                    <span class="opcija-ikona">💳</span>
+                    Kartica
+                </button>
+                <button class="placanje-opcija" onclick="odaberiPlacanje(this, 'paypal')">
+                    <span class="opcija-ikona">🅿️</span>
+                    PayPal
+                </button>
+                <button class="placanje-opcija" onclick="odaberiPlacanje(this, 'gotovina')">
+                    <span class="opcija-ikona">💵</span>
+                    Gotovina
+                </button>
+            </div>
+ 
+            <!-- Podaci kartice -->
+            <div id="kartica-polja">
+                <div class="forma-grupa">
+                    <label class="forma-label">Broj kartice</label>
+                    <div class="input-s-ikonom">
+                        <input type="text" class="forma-input" placeholder="1234 5678 9012 3456"
+                               id="kartica-broj" maxlength="19"
+                               oninput="formatirajKarticu(this)">
+                        <span class="input-ikona">💳</span>
+                    </div>
+                </div>
+                <div class="forma-red">
+                    <div class="forma-grupa">
+                        <label class="forma-label">Rok važenja</label>
+                        <input type="text" class="forma-input" placeholder="MM/GG"
+                               id="kartica-datum" maxlength="5"
+                               oninput="formatirajDatum(this)">
+                    </div>
+                    <div class="forma-grupa">
+                        <label class="forma-label">CVV</label>
+                        <input type="password" class="forma-input" placeholder="•••"
+                               id="kartica-cvv" maxlength="3">
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- PayPal poruka -->
+            <div id="paypal-poruka" style="display:none; text-align:center; padding:1rem; color:#95c9a8; font-style:italic; font-size:0.9rem;">
+                Nakon klika na "Završi narudžbu" bit ćete preusmjereni na PayPal.
+            </div>
+ 
+            <!-- Gotovina poruka -->
+            <div id="gotovina-poruka" style="display:none; text-align:center; padding:1rem; color:#95c9a8; font-style:italic; font-size:0.9rem;">
+                Plaćate pri preuzimanju ili dostavi.
+            </div>
+ 
+            <button class="naruciti-gumb" onclick="posaljiNarudzbu()">
+                🌿 Završi narudžbu
+            </button>
+ 
+            <p class="sigurnost-napomena">🔒 Vaši podaci su sigurni i zaštićeni</p>
+            <a href="koturski jasmini.html" class="povratak-gumb" style="display:block; text-align:center; margin-top:1rem;">← Povratak na početnu</a>
+
+        </div>
+ 
+    </div><!-- /kosarica-stranica -->
+ 
+    <!-- ── Potvrda narudžbe ── -->
+    <div class="potvrda-odjeljak" id="potvrda">
+        <div class="potvrda-ikona">🌹</div>
+        <h2 class="potvrda-naslov">Hvala na narudžbi!</h2>
+        <p class="potvrda-tekst">
+            Vaša narudžba je primljena.<br>
+            Potvrdu ćemo poslati na vašu e-mail adresu.<br>
+            <strong style="color:#d8f3dc;">Koturski Jasmini</strong> se vesele što će uljepšati vaš dan. 🌿
+        </p>
+        <a href="koturski jasmini.html" class="povratak-gumb">← Povratak na početnu</a>
+    </div>
+ 
+    <script>
+        // ── Ažuriranje količine ──
+        function promijeniKolicinu(btn, delta) {
+            const artikl = btn.closest('.artikl');
+            const span   = artikl.querySelector('.kolicina-broj');
+            const cijena = parseFloat(artikl.dataset.cijena);
+            let kol = parseInt(span.textContent) + delta;
+            if (kol < 1) kol = 1;
+            span.textContent = kol;
+            artikl.querySelector('.artikl-ukupno').textContent =
+                (cijena * kol).toFixed(2).replace('.', ',') + ' €';
+            azurirajZbroj();
+        }
+ 
+        // ── Uklanjanje artikla ──
+        function ukloniArtikl(btn) {
+            const artikl = btn.closest('.artikl');
+            artikl.style.opacity = '0';
+            artikl.style.transform = 'translateX(20px)';
+            artikl.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                artikl.remove();
+                azurirajZbroj();
+                provjeriPraznu();
+            }, 300);
+        }
+ 
+        function provjeriPraznu() {
+            const lista = document.querySelectorAll('.artikl');
+            document.getElementById('prazna-poruka').style.display =
+                lista.length === 0 ? 'block' : 'none';
+        }
+ 
+        // ── Ažuriranje zbrojeva ──
+        function azurirajZbroj() {
+            let medjuzbroj = 0;
+            document.querySelectorAll('.artikl').forEach(a => {
+                const cijena = parseFloat(a.dataset.cijena);
+                const kol    = parseInt(a.querySelector('.kolicina-broj').textContent);
+                medjuzbroj  += cijena * kol;
+            });
+ 
+            const dostavaRadio = document.querySelector('input[name="dostava"]:checked');
+            const dostava = dostavaRadio ? parseFloat(dostavaRadio.value) : 5;
+            const ukupno  = medjuzbroj + dostava;
+ 
+            document.getElementById('medjuzbroj').textContent =
+                medjuzbroj.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('dostava-iznos').textContent =
+                dostava === 0 ? 'Besplatno' : dostava.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('ukupno').textContent =
+                ukupno.toFixed(2).replace('.', ',') + ' €';
+        }
+ 
+        // ── Odabir načina plaćanja ──
+        function odaberiPlacanje(btn, tip) {
+            document.querySelectorAll('.placanje-opcija').forEach(b => b.classList.remove('aktivan'));
+            btn.classList.add('aktivan');
+ 
+            document.getElementById('kartica-polja').style.display  = tip === 'kartica'  ? 'block' : 'none';
+            document.getElementById('paypal-poruka').style.display  = tip === 'paypal'   ? 'block' : 'none';
+            document.getElementById('gotovina-poruka').style.display = tip === 'gotovina' ? 'block' : 'none';
+        }
+ 
+        // ── Formatiranje broja kartice ──
+        function formatirajKarticu(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 16);
+            input.value = v.match(/.{1,4}/g)?.join(' ') || v;
+        }
+ 
+        function formatirajDatum(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 4);
+            if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
+            input.value = v;
+        }
+ 
+        // ── Slanje narudžbe ──
+        function posaljiNarudzbu() {
+            const ime    = document.getElementById('ime').value.trim();
+            const email  = document.getElementById('email').value.trim();
+            const adresa = document.getElementById('adresa').value.trim();
+            const grad   = document.getElementById('grad').value.trim();
+ 
+            if (!ime || !email || !adresa || !grad) {
+                alert('Molimo ispunite sva obavezna polja (ime, e-mail, adresa, grad).');
+                return;
+            }
+ 
+            // Animirani prelaz na potvrdu
+            document.getElementById('kosarica-stranica').style.transition = 'opacity 0.4s';
+            document.getElementById('kosarica-stranica').style.opacity    = '0';
+            setTimeout(() => {
+                document.getElementById('kosarica-stranica').style.display = 'none';
+                const potvrda = document.getElementById('potvrda');
+                potvrda.style.display = 'block';
+                potvrda.style.animation = 'fadeIn 0.5s ease both';
+            }, 400);
+        }
+ 
+        // Inicijalni zbroj
+        azurirajZbroj();
+    </script>
+ 
+</body>
+</html>
+ 
