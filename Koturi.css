@@ -1056,3 +1056,199 @@ footer {
             margin-bottom: 0.7rem;
             display: block;
         }
+        .hero-tekst {
+            text-align: center;
+            padding: 1rem 2rem 0;
+            animation: fadeIn 0.7s ease both;
+        }
+ 
+        .hero-podnaslov {
+            font-family: var(--font-jost);
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--zelena-mint);
+            margin-bottom: 0.5rem;
+        }
+ 
+        /* ── Uvodni opis ── */
+        .uvod-blok {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+            animation: fadeIn 0.7s 0.15s ease both;
+        }
+ 
+        .uvod-citat {
+            background: rgba(45, 90, 45, 0.75);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+            color: var(--zelena-mint);
+            font-family: var(--font-cormorant);
+            font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.75;
+            text-align: center;
+            border-left: 3px solid var(--zelena-svijetla);
+            border-right: 3px solid var(--zelena-svijetla);
+        }
+ 
+        /* ── Istaknuti proizvodi ── */
+        .istaknuto-naslov {
+            font-family: var(--font-cormorant);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 300;
+            color: var(--zelena-mint);
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+            animation: fadeIn 0.7s 0.25s ease both;
+        }
+ 
+        .istaknuto-podnaslov {
+            font-family: var(--font-jost);
+            font-size: 0.78rem;
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--zelena-muted);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeIn 0.7s 0.3s ease both;
+        }
+ 
+        .istaknuto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            animation: fadeIn 0.7s 0.35s ease both;
+        }
+ 
+        .istaknuto-kartica {
+            background: rgba(27, 67, 50, 0.65);
+            border: 1px solid rgba(82, 183, 136, 0.25);
+            border-radius: 20px;
+            padding: 2rem 1.5rem 1.6rem;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+        }
+ 
+        .istaknuto-kartica:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+            border-color: var(--zelena-svijetla);
+            background: rgba(45, 106, 79, 0.75);
+        }
+ 
+        .kartica-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+ 
+        .kartica-naziv {
+            font-family: var(--font-cormorant);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--zelena-mint);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .kartica-opis {
+            font-family: var(--font-jost);
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: var(--zelena-muted);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+ 
+        .kartica-gumb {
+            display: inline-block;
+            font-family: var(--font-jost);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--zelena-mint);
+            border: 1px solid rgba(82, 183, 136, 0.5);
+            border-radius: 12px;
+            padding: 7px 20px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+ 
+        .istaknuto-kartica:hover .kartica-gumb {
+            background: var(--zelena-svijetla);
+            color: #fff;
+            border-color: var(--zelena-svijetla);
+        }
+ 
+        /* ── Razdjelnik ── */
+        .pocetna-razdjelnik {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: center;
+            margin: 0 auto 2.5rem;
+            max-width: 400px;
+        }
+ 
+        .pocetna-razdjelnik::before,
+        .pocetna-razdjelnik::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(82, 183, 136, 0.35);
+        }
+ 
+        .pocetna-razdjelnik span {
+            font-size: 1rem;
+            color: var(--zelena-svijetla);
+        }
+ 
+        /* ── Tagline na dnu ── */
+        .pocetna-tagline {
+            max-width: 680px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+            background: rgba(42, 145, 28, 0.15);
+            border: 1.5px solid var(--zelena-svijetla);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            color: var(--zelena-mint);
+            font-family: var(--font-cormorant);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-style: italic;
+            font-weight: 300;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            animation: fadeIn 0.7s 0.45s ease both;
+        }
+ 
+        .cvjetovi-red {
+            text-align: center;
+            font-size: 1.3rem;
+            letter-spacing: 0.6em;
+            opacity: 0.45;
+            margin-bottom: 2rem;
+        }
+        .dobrodosli {
+            font-family: var(--font-cormorant);
+            font-size: 8rem;
+            font-weight: 300;
+            color: var(--zelena-mint);
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+            animation: fadeIn 0.7s 0.25s ease both;
+        }
