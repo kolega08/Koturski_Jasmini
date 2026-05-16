@@ -1,55 +1,113 @@
 <!DOCTYPE html>
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koturski Jasmini</title>
+    <title>Cvijeće – Koturski Jasmini</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Koturi.css">
+    <style>
+        /* Toast obavijest */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--zelena-panel);
+            color: var(--zelena-mint);  
+            font-family: var(--font-jost);  
+            font-size: 0.9rem;  
+            padding: 0.9rem 2rem;   
+            border-radius: 20px;    
+            border: 1px solid var(--zelena-svijetla);   
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4); 
+            z-index: 999;   
+            opacity: 0; 
+            transition: all 0.35s ease;
+            pointer-events: none;
+        }
+
+        .toast.vidljiv {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Gumb "Dodaj u košaricu" — isti stil kao buket-gumb ali zeleni */
+        .buket-gumb-kosarica {
+            font-family: var(--font-jost);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--zelena-link);
+            border: 1px solid #a8be9c;
+            border-radius: 4px;
+            padding: 7px 16px;
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .buket-gumb-kosarica:hover {
+            background: var(--zelena-link);
+            color: #fff;
+            border-color: var(--zelena-link);
+        }
+
+        .buket-gumb-kosarica.dodan {
+            background: var(--zelena-link);
+            color: #fff;
+        }
+
+        .buketi-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="top-bar">
-      <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
-    
 
-    <nav>
-        <ul>
-            <li><a href="Onama.html">O nama</a></li>
-            <li><a href="Nasa Polja.html">Nasa Polja</a></li>
-            <li><a href="Cvijece.html">Cvijece</a></li>
-            <li><a href="Buketi.html">Buketi</a></li>
-            <li><a href="Lokacija.html">Lokacija</a></li>
-            <li><a href="Kontakt.html">Kontakt</a></li>
-        </ul>
-    </nav>
-          <div>
-    <h1> <a href="index.html">Koturski Jasmini</a> </h1>
-      <a href="Kosarica.html" class="kosarica-gumb">
-        🛒 <span>Košarica</span>
-    </a>
+    <div class="top-bar">
+        <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
+        <nav>
+            <ul>
+                <li><a href="Onama.html">O nama</a></li>
+                <li><a href="Nasa Polja.html">Nasa Polja</a></li>
+                <li><a href="Cvijece.html">Cvijece</a></li>
+                <li><a href="Buketi.html">Buketi</a></li>
+                <li><a href="Lokacija.html">Lokacija</a></li>
+                <li><a href="Kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+        <div>
+            <h1><a href="index.html">Koturski Jasmini</a></h1>
+            <a href="Kosarica.html" class="kosarica-gumb">
+                🛒 <span>Košarica</span>
+            </a>
+        </div>
     </div>
 
-</div>
-<h2>Cvijece</h2>
-   <div class="buketi-section">
+    <h2>🌸 Cvijeće</h2>
 
+    <div class="buketi-section">
         <div class="buketi-grid">
- 
-            <!-- Buket 1: Ruže -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Crvene ruže" data-cijena="45" data-emoji="🌹">
                 <span class="buket-oznaka">Ruže</span>
-                <!-- Zamijeni src s pravom slikom kada bude dostupna -->
                 <div class="buket-slika-placeholder">🌹</div>
                 <div class="buket-tijelo">
                     <h3 class="buket-naziv">Crvene ruže</h3>
                     <p class="buket-opis">11 svježih crvenih ruža, klasični simbol ljubavi i elegancije.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">45,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-            <!-- Buket 2: Ljiljani -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Bijeli ljiljani" data-cijena="38" data-emoji="🌷">
                 <span class="buket-oznaka">Ljiljani</span>
                 <div class="buket-slika-placeholder">🌷</div>
                 <div class="buket-tijelo">
@@ -57,13 +115,12 @@
                     <p class="buket-opis">5 granata orijentalnih ljiljana s intenzivnim mirisom.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">38,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-            <!-- Buket 3: Mješoviti -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Proljetni mix" data-cijena="52" data-emoji="💐">
                 <span class="buket-oznaka">Mješoviti</span>
                 <div class="buket-slika-placeholder">💐</div>
                 <div class="buket-tijelo">
@@ -71,13 +128,12 @@
                     <p class="buket-opis">Ruže, ljiljani i tratinčice — šareni sezonski aranžman.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">52,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-            <!-- Buket 4: Suncokret -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Suncokretovi buketi" data-cijena="30" data-emoji="🌻">
                 <span class="buket-oznaka">Suncokret</span>
                 <div class="buket-slika-placeholder">🌻</div>
                 <div class="buket-tijelo">
@@ -85,27 +141,25 @@
                     <p class="buket-opis">Veseli suncokretovi koji donose radost u svaki dom.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">30,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-            <!-- Buket 5: Lavanda -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Lavanda i bijelo" data-cijena="35" data-emoji="🪻">
                 <span class="buket-oznaka">Lavanda</span>
-                <div class="buket-slika-placeholder">💜</div>
+                <div class="buket-slika-placeholder">🪻</div>
                 <div class="buket-tijelo">
                     <h3 class="buket-naziv">Lavanda i bijelo</h3>
                     <p class="buket-opis">Mirišljava lavanda s bijelim ljiljanima, nježan spoj.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">35,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-            <!-- Buket 6: Sezonski -->
-            <div class="buket-okvir">
+
+            <div class="buket-okvir" data-naziv="Sezonski izbor" data-cijena="28" data-emoji="🌸">
                 <span class="buket-oznaka">Sezonski</span>
                 <div class="buket-slika-placeholder">🌸</div>
                 <div class="buket-tijelo">
@@ -113,10 +167,45 @@
                     <p class="buket-opis">Svaki tjedan drugačiji — ono što je najsvježije s naših polja.</p>
                     <div class="buket-donji">
                         <span class="buket-cijena">od 28,00 €</span>
-                        <a href="Kontakt.html" class="buket-gumb">Naruči</a>
+                        <button class="buket-gumb-kosarica" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
                     </div>
                 </div>
             </div>
- 
-        </div><!-- /buketi-grid -->
+
+        </div>
     </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function dodajUKosaricu(btn) {
+            const kartica = btn.closest('.buket-okvir');
+            const naziv   = kartica.dataset.naziv;
+            const cijena  = parseFloat(kartica.dataset.cijena);
+            const emoji   = kartica.dataset.emoji;
+
+            let kosarica = JSON.parse(sessionStorage.getItem('kosarica') || '[]');
+            const postojeci = kosarica.find(a => a.naziv === naziv);
+            if (postojeci) {
+                postojeci.kolicina += 1;
+            } else {
+                kosarica.push({ naziv, cijena, emoji, kolicina: 1 });
+            }
+            sessionStorage.setItem('kosarica', JSON.stringify(kosarica));
+
+            btn.textContent = '✓ Dodano';
+            btn.classList.add('dodan');
+            setTimeout(() => {
+                btn.textContent = '🛒 Dodaj';
+                btn.classList.remove('dodan');
+            }, 1800);
+
+            const toast = document.getElementById('toast');
+            toast.textContent = '✅ ' + naziv + ' dodano u košaricu!';
+            toast.classList.add('vidljiv');
+            setTimeout(() => toast.classList.remove('vidljiv'), 2500);
+        }
+    </script>
+
+</body>
+</html>
