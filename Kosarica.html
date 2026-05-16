@@ -25,7 +25,7 @@
      
     </nav>
            <div>
-    <h1> <li><a href="index.html">Koturski Jasmini</a></li> </h1>
+    <h1> <li><a href="koturski jasmini.html">Koturski Jasmini</a></li> </h1>
     <a href="Kosarica.html" class="kosarica-gumb">
         🛒 <span>Košarica</span>
     </a>
@@ -231,7 +231,7 @@
             </button>
  
             <p class="sigurnost-napomena">🔒 Vaši podaci su sigurni i zaštićeni</p>
-            <a href="index.html" class="povratak-gumb" style="display:block; text-align:center; margin-top:1rem;">← Povratak na početnu</a>
+            <a href="koturski jasmini.html" class="povratak-gumb" style="display:block; text-align:center; margin-top:1rem;">← Povratak na početnu</a>
 
         </div>
  
@@ -246,11 +246,10 @@
             Potvrdu ćemo poslati na vašu e-mail adresu.<br>
             <strong style="color:#d8f3dc;">Koturski Jasmini</strong> se vesele što će uljepšati vaš dan. 🌿
         </p>
-        <a href="index.html" class="povratak-gumb">← Povratak na početnu</a>
+        <a href="koturski jasmini.html" class="povratak-gumb">← Povratak na početnu</a>
     </div>
  
-    <script>
-        // ── Ažuriranje količine ──
+      <script>
         function promijeniKolicinu(btn, delta) {
             const artikl = btn.closest('.artikl');
             const span   = artikl.querySelector('.kolicina-broj');
@@ -263,7 +262,6 @@
             azurirajZbroj();
         }
  
-        // ── Uklanjanje artikla ──
         function ukloniArtikl(btn) {
             const artikl = btn.closest('.artikl');
             artikl.style.opacity = '0';
@@ -282,7 +280,6 @@
                 lista.length === 0 ? 'block' : 'none';
         }
  
-        // ── Ažuriranje zbrojeva ──
         function azurirajZbroj() {
             let medjuzbroj = 0;
             document.querySelectorAll('.artikl').forEach(a => {
@@ -303,17 +300,14 @@
                 ukupno.toFixed(2).replace('.', ',') + ' €';
         }
  
-        // ── Odabir načina plaćanja ──
         function odaberiPlacanje(btn, tip) {
             document.querySelectorAll('.placanje-opcija').forEach(b => b.classList.remove('aktivan'));
             btn.classList.add('aktivan');
- 
-            document.getElementById('kartica-polja').style.display  = tip === 'kartica'  ? 'block' : 'none';
-            document.getElementById('paypal-poruka').style.display  = tip === 'paypal'   ? 'block' : 'none';
+            document.getElementById('kartica-polja').style.display   = tip === 'kartica'  ? 'block' : 'none';
+            document.getElementById('paypal-poruka').style.display   = tip === 'paypal'   ? 'block' : 'none';
             document.getElementById('gotovina-poruka').style.display = tip === 'gotovina' ? 'block' : 'none';
         }
  
-        // ── Formatiranje broja kartice ──
         function formatirajKarticu(input) {
             let v = input.value.replace(/\D/g, '').substring(0, 16);
             input.value = v.match(/.{1,4}/g)?.join(' ') || v;
@@ -325,7 +319,6 @@
             input.value = v;
         }
  
-        // ── Slanje narudžbe ──
         function posaljiNarudzbu() {
             const ime    = document.getElementById('ime').value.trim();
             const email  = document.getElementById('email').value.trim();
@@ -337,19 +330,162 @@
                 return;
             }
  
-            // Animirani prelaz na potvrdu
-            document.getElementById('kosarica-stranica').style.transition = 'opacity 0.4s';
-            document.getElementById('kosarica-stranica').style.opacity    = '0';
+            const stranica = document.getElementById('kosarica-stranica');
+            stranica.style.transition = 'opacity 0.4s';
+            stranica.style.opacity    = '0';
             setTimeout(() => {
-                document.getElementById('kosarica-stranica').style.display = 'none';
+                stranica.style.display = 'none';
                 const potvrda = document.getElementById('potvrda');
                 potvrda.style.display = 'block';
                 potvrda.style.animation = 'fadeIn 0.5s ease both';
             }, 400);
         }
  
-        // Inicijalni zbroj
-        azurirajZbroj();
+        // ── Učitaj artikle iz sessionStorage (dodani na stranici Buketi) ──
+        function ucitajKosaricu() {
+            const lista = document.getElementById('artikli-lista');
+            lista.innerHTML = '';
+            const kosarica = JSON.parse(sessionStorage.getItem('kosarica') || '[]');
+ 
+            kosarica.forEach(artikl => {
+                const div = document.createElement('div');
+                div.className = 'artikl';
+                div.dataset.cijena = artikl.cijena;
+                div.dataset.naziv  = artikl.naziv;
+                div.innerHTML = `
+                    <div class="artikl-emoji">${artikl.emoji}</div>
+                    <div class="artikl-info">
+                        <div class="artikl-naziv">${artikl.naziv}</div>
+                        <div class="artikl-cijena-kom">${artikl.cijena.toFixed(2).replace('.', ',')} € / kom</div>
+                    </div>
+                    <div class="kolicina-ctrl">
+                        <button onclick="promijeniKolicinu(this, -1)">−</button>
+                        <span class="kolicina-broj">${artikl.kolicina}</span>
+                        <button onclick="promijeniKolicinu(this, 1)">+</button>
+                    </div>
+                    <div class="artikl-ukupno">${(artikl.cijena * artikl.kolicina).toFixed(2).replace('.', ',')} €</div>
+                    <button class="ukloni-gumb" onclick="ukloniArtikl(this)" title="Ukloni">✕</button>
+                `;
+                lista.appendChild(div);
+            });
+ 
+            provjeriPraznu();
+            azurirajZbroj();
+        }
+ 
+        // ── Spremi stanje košarice nazad u sessionStorage ──
+        function spremiKosaricu() {
+            const artikli = [];
+            document.querySelectorAll('.artikl').forEach(a => {
+                artikli.push({
+                    naziv:    a.querySelector('.artikl-naziv').textContent,
+                    cijena:   parseFloat(a.dataset.cijena),
+                    emoji:    a.querySelector('.artikl-emoji').textContent,
+                    kolicina: parseInt(a.querySelector('.kolicina-broj').textContent)
+                });
+            });
+            sessionStorage.setItem('kosarica', JSON.stringify(artikli));
+        }
+ 
+        // ── Ažuriranje količine ──
+        function promijeniKolicinu(btn, delta) {
+            const artikl = btn.closest('.artikl');
+            const span   = artikl.querySelector('.kolicina-broj');
+            const cijena = parseFloat(artikl.dataset.cijena);
+            let kol = parseInt(span.textContent) + delta;
+            if (kol < 1) kol = 1;
+            span.textContent = kol;
+            artikl.querySelector('.artikl-ukupno').textContent =
+                (cijena * kol).toFixed(2).replace('.', ',') + ' €';
+            azurirajZbroj();
+            spremiKosaricu();
+        }
+ 
+        // ── Uklanjanje artikla ──
+        function ukloniArtikl(btn) {
+            const artikl = btn.closest('.artikl');
+            artikl.style.opacity = '0';
+            artikl.style.transform = 'translateX(20px)';
+            artikl.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                artikl.remove();
+                azurirajZbroj();
+                provjeriPraznu();
+                spremiKosaricu();
+            }, 300);
+        }
+ 
+        function provjeriPraznu() {
+            const lista = document.querySelectorAll('.artikl');
+            document.getElementById('prazna-poruka').style.display =
+                lista.length === 0 ? 'block' : 'none';
+        }
+ 
+        function azurirajZbroj() {
+            let medjuzbroj = 0;
+            document.querySelectorAll('.artikl').forEach(a => {
+                const cijena = parseFloat(a.dataset.cijena);
+                const kol    = parseInt(a.querySelector('.kolicina-broj').textContent);
+                medjuzbroj  += cijena * kol;
+            });
+ 
+            const dostavaRadio = document.querySelector('input[name="dostava"]:checked');
+            const dostava = dostavaRadio ? parseFloat(dostavaRadio.value) : 5;
+            const ukupno  = medjuzbroj + dostava;
+ 
+            document.getElementById('medjuzbroj').textContent =
+                medjuzbroj.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('dostava-iznos').textContent =
+                dostava === 0 ? 'Besplatno' : dostava.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('ukupno').textContent =
+                ukupno.toFixed(2).replace('.', ',') + ' €';
+        }
+ 
+        function odaberiPlacanje(btn, tip) {
+            document.querySelectorAll('.placanje-opcija').forEach(b => b.classList.remove('aktivan'));
+            btn.classList.add('aktivan');
+            document.getElementById('kartica-polja').style.display   = tip === 'kartica'  ? 'block' : 'none';
+            document.getElementById('paypal-poruka').style.display   = tip === 'paypal'   ? 'block' : 'none';
+            document.getElementById('gotovina-poruka').style.display = tip === 'gotovina' ? 'block' : 'none';
+        }
+ 
+        function formatirajKarticu(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 16);
+            input.value = v.match(/.{1,4}/g)?.join(' ') || v;
+        }
+ 
+        function formatirajDatum(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 4);
+            if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
+            input.value = v;
+        }
+ 
+        function posaljiNarudzbu() {
+            const ime    = document.getElementById('ime').value.trim();
+            const email  = document.getElementById('email').value.trim();
+            const adresa = document.getElementById('adresa').value.trim();
+            const grad   = document.getElementById('grad').value.trim();
+ 
+            if (!ime || !email || !adresa || !grad) {
+                alert('Molimo ispunite sva obavezna polja (ime, e-mail, adresa, grad).');
+                return;
+            }
+ 
+            sessionStorage.removeItem('kosarica');
+ 
+            const stranica = document.getElementById('kosarica-stranica');
+            stranica.style.transition = 'opacity 0.4s';
+            stranica.style.opacity    = '0';
+            setTimeout(() => {
+                stranica.style.display = 'none';
+                const potvrda = document.getElementById('potvrda');
+                potvrda.style.display = 'block';
+                potvrda.style.animation = 'fadeIn 0.5s ease both';
+            }, 400);
+        }
+ 
+        // Pokretanje — učitaj košaricu iz sessionStorage
+        ucitajKosaricu();
     </script>
  
 </body>
