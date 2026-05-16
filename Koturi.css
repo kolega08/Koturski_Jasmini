@@ -967,3 +967,29 @@ footer {
             opacity: 0.5;
             animation: fadeIn 0.6s 0.5s ease both;
         }
+ .polja-cvijece-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 1.2rem;
+        }
+ 
+        .polja-cvijece-kartica {
+            background: rgba(11, 44, 1, 0.5);
+            border: 1px solid rgba(82, 183, 136, 0.3);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            text-align: center;
+            font-family: var(--font-jost);
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--zelena-mint);
+            letter-spacing: 0.05em;
+            transition: background 0.2s, transform 0.2s, border-color 0.2s;
+        }
+ 
+        .polja-cvijece-kartica:hover {
+            background: rgba(45, 106, 79, 0.7);
+            border-color: var(--zelena-svijetla);
+            transform: translateY(-3px);
+        }
