@@ -1,34 +1,242 @@
+
 <!DOCTYPE html>
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koturski Jasmini</title>
+    <title>Buketi – Koturski Jasmini</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Koturi.css">
+    <style>
+        .buketi-uvod {
+            max-width: 760px;
+            margin: 0 auto 2.5rem;
+            padding: 0 2rem;
+            animation: fadeIn 0.6s ease both;
+        }
+ 
+        .buketi-uvod-tekst {
+            background: rgba(45, 90, 45, 0.75);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+            color: var(--zelena-mint);
+            font-family: var(--font-cormorant);
+            font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.75;
+            text-align: center;
+            border-left: 3px solid var(--zelena-svijetla);
+            border-right: 3px solid var(--zelena-svijetla);
+        }
+ 
+        .buketi-razdjelnik {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: center;
+            margin: 0 auto 2.5rem;
+            max-width: 400px;
+        }
+ 
+        .buketi-razdjelnik::before,
+        .buketi-razdjelnik::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(82, 183, 136, 0.4);
+        }
+ 
+        .buketi-razdjelnik span {
+            font-size: 1rem;
+            color: var(--zelena-svijetla);
+        }
+ 
+        .buketi-vrste-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+        }
+ 
+        .buket-vrsta-kartica {
+            background: rgba(27, 67, 50, 0.65);
+            border: 1px solid rgba(82, 183, 136, 0.25);
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 1.6rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
+            animation: fadeIn 0.6s ease both;
+            display: flex;
+            flex-direction: column;
+        }
+ 
+        .buket-vrsta-kartica:nth-child(1) { animation-delay: 0.05s; }
+        .buket-vrsta-kartica:nth-child(2) { animation-delay: 0.12s; }
+        .buket-vrsta-kartica:nth-child(3) { animation-delay: 0.19s; }
+        .buket-vrsta-kartica:nth-child(4) { animation-delay: 0.26s; }
+        .buket-vrsta-kartica:nth-child(5) { animation-delay: 0.33s; }
+ 
+        .buket-vrsta-kartica:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 34px rgba(0,0,0,0.42);
+            border-color: var(--zelena-svijetla);
+            background: rgba(45, 106, 79, 0.75);
+        }
+ 
+        .buket-vrsta-emoji {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+ 
+        .buket-vrsta-naziv {
+            font-family: var(--font-cormorant);
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--zelena-mint);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .buket-vrsta-opis {
+            font-family: var(--font-jost);
+            font-size: 0.88rem;
+            font-weight: 300;
+            color: var(--zelena-muted);
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 1.2rem;
+        }
+ 
+        /* Donji red: cijena + gumb */
+        .buket-donji-red {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+ 
+        .buket-cijena {
+            font-family: var(--font-cormorant);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--zelena-mint);
+        }
+ 
+        .dodaj-gumb {
+            font-family: var(--font-jost);
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--zelena-mint);
+            border: 1px solid rgba(82, 183, 136, 0.5);
+            border-radius: 12px;
+            padding: 8px 18px;
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+        }
+ 
+        .dodaj-gumb:hover {
+            background: var(--zelena-svijetla);
+            color: #fff;
+            border-color: var(--zelena-svijetla);
+        }
+ 
+        .dodaj-gumb.dodan {
+            background: var(--zelena-panel);
+            border-color: var(--zelena-panel);
+            color: var(--zelena-mint);
+        }
+ 
+        /* Narudžba kartica */
+        .buket-vrsta-kartica.narudzba {
+            border-color: rgba(82, 183, 136, 0.5);
+            background: rgba(42, 105, 60, 0.5);
+        }
+ 
+        /* Toast obavijest */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--zelena-panel);
+            color: var(--zelena-mint);
+            font-family: var(--font-jost);
+            font-size: 0.9rem;
+            padding: 0.9rem 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--zelena-svijetla);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            z-index: 999;
+            opacity: 0;
+            transition: all 0.35s ease;
+            pointer-events: none;
+        }
+ 
+        .toast.vidljiv {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+ 
+        .buketi-tagline {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            padding: 1.5rem 2rem;
+            background: rgba(42, 145, 28, 0.15);
+            border: 1.5px solid var(--zelena-svijetla);
+            border-radius: 20px;
+            text-align: center;
+            color: var(--zelena-mint);
+            font-family: var(--font-cormorant);
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            font-style: italic;
+            font-weight: 300;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            animation: fadeIn 0.6s 0.4s ease both;
+        }
+ 
+        .cvjetovi-red {
+            text-align: center;
+            font-size: 1.3rem;
+            letter-spacing: 0.6em;
+            opacity: 0.45;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
- <body>
+<body>
+ 
     <div class="top-bar">
-<img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">    
-
-    <nav>
-        <ul>
-            <li><a href="Onama.html">O nama</a></li>
-            <li><a href="Nasa Polja.html">Nasa Polja</a></li>
-            <li><a href="Cvijece.html">Cvijece</a></li>
-            <li><a href="Buketi.html">Buketi</a></li>
-            <li><a href="Lokacija.html">Lokacija</a></li>
-            <li><a href="Kontakt.html">Kontakt</a></li>
-        </ul>
-    </nav>
-          <div>
-    <h1> <a href="index.html">Koturski Jasmini</a> </h1>
-      <a href="Kosarica.html" class="kosarica-gumb">
-        🛒 <span>Košarica</span>
-    </a>
+        <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
+        <nav>
+            <ul>
+                <li><a href="Onama.html">O nama</a></li>
+                <li><a href="Nasa Polja.html">Nasa Polja</a></li>
+                <li><a href="Cvijece.html">Cvijece</a></li>
+                <li><a href="Buketi.html">Buketi</a></li>
+                <li><a href="Lokacija.html">Lokacija</a></li>
+                <li><a href="Kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+        <div>
+            <h1><a href="index.html">Koturski Jasmini</a></h1>
+            <a href="Kosarica.html" class="kosarica-gumb">
+                🛒 <span>Košarica</span>
+            </a>
+        </div>
     </div>
-
-</div>
-<h2>Buketi</h2>
-<div class="buketi-uvod">
+ 
+    <h2>💐 Buketi</h2>
+ 
+    <div class="buketi-uvod">
         <div class="buketi-uvod-tekst">
             Naši buketi izrađuju se s posebnom pažnjom, kreativnošću i ljubavlju prema cvijeću.
         </div>
@@ -36,42 +244,60 @@
  
     <div class="buketi-razdjelnik"><span>✦</span></div>
  
-    <!-- Vrste buketa -->
     <div class="buketi-vrste-grid">
  
-        <div class="buket-vrsta-kartica">
+        <div class="buket-vrsta-kartica" data-naziv="Romantični buket" data-cijena="55" data-emoji="❤️">
             <span class="buket-vrsta-emoji">❤️</span>
             <p class="buket-vrsta-naziv">Romantični buketi</p>
             <p class="buket-vrsta-opis">Savršen izbor za godišnjice i izražavanje ljubavi.</p>
+            <div class="buket-donji-red">
+                <span class="buket-cijena">55,00 €</span>
+                <button class="dodaj-gumb" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
+            </div>
         </div>
  
-        <div class="buket-vrsta-kartica">
+        <div class="buket-vrsta-kartica" data-naziv="Rođendanski buket" data-cijena="40" data-emoji="🎉">
             <span class="buket-vrsta-emoji">🎉</span>
             <p class="buket-vrsta-naziv">Rođendanski buketi</p>
             <p class="buket-vrsta-opis">Vesele kombinacije boja i svježeg cvijeća.</p>
+            <div class="buket-donji-red">
+                <span class="buket-cijena">40,00 €</span>
+                <button class="dodaj-gumb" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
+            </div>
         </div>
  
-        <div class="buket-vrsta-kartica">
+        <div class="buket-vrsta-kartica" data-naziv="Svadbeni buket" data-cijena="120" data-emoji="👰">
             <span class="buket-vrsta-emoji">👰</span>
             <p class="buket-vrsta-naziv">Svadbeni buketi</p>
             <p class="buket-vrsta-opis">Elegantni i posebno dizajnirani buketi za mladenke.</p>
+            <div class="buket-donji-red">
+                <span class="buket-cijena">120,00 €</span>
+                <button class="dodaj-gumb" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
+            </div>
         </div>
  
-        <div class="buket-vrsta-kartica">
+        <div class="buket-vrsta-kartica" data-naziv="Elegantni buket" data-cijena="48" data-emoji="🌿">
             <span class="buket-vrsta-emoji">🌿</span>
             <p class="buket-vrsta-naziv">Elegantni buketi</p>
             <p class="buket-vrsta-opis">Minimalistički i moderni aranžmani.</p>
+            <div class="buket-donji-red">
+                <span class="buket-cijena">48,00 €</span>
+                <button class="dodaj-gumb" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
+            </div>
         </div>
  
-        <div class="buket-vrsta-kartica narudzba">
+        <div class="buket-vrsta-kartica narudzba" data-naziv="Buket po narudžbi" data-cijena="60" data-emoji="🎁">
             <span class="buket-vrsta-emoji">🎁</span>
             <p class="buket-vrsta-naziv">Buketi po narudžbi</p>
             <p class="buket-vrsta-opis">Kupci mogu sami odabrati vrste cvijeća i stil buketa.</p>
+            <div class="buket-donji-red">
+                <span class="buket-cijena">od 60,00 €</span>
+                <button class="dodaj-gumb" onclick="dodajUKosaricu(this)">🛒 Dodaj</button>
+            </div>
         </div>
  
     </div>
  
-    <!-- Tagline -->
     <div class="buketi-tagline">
         Naš cilj je da svaki buket bude poseban i da prenese emocije
         koje riječi često ne mogu opisati. 💐
@@ -79,3 +305,46 @@
  
     <div class="cvjetovi-red">💐 🌸 💐 🌸 💐</div>
  
+    <!-- Toast obavijest -->
+    <div class="toast" id="toast">✅ Dodano u košaricu!</div>
+ 
+    <script>
+        // Košarica se sprema u sessionStorage da bude dostupna i na Kosarica.html
+        function dodajUKosaricu(btn) {
+            const kartica = btn.closest('.buket-vrsta-kartica');
+            const naziv   = kartica.dataset.naziv;
+            const cijena  = parseFloat(kartica.dataset.cijena);
+            const emoji   = kartica.dataset.emoji;
+ 
+            // Dohvati postojeću košaricu ili napravi novu
+            let kosarica = JSON.parse(sessionStorage.getItem('kosarica') || '[]');
+ 
+            // Provjeri postoji li već taj artikl
+            const postojeci = kosarica.find(a => a.naziv === naziv);
+            if (postojeci) {
+                postojeci.kolicina += 1;
+            } else {
+                kosarica.push({ naziv, cijena, emoji, kolicina: 1 });
+            }
+ 
+            sessionStorage.setItem('kosarica', JSON.stringify(kosarica));
+ 
+            // Vizualni feedback na gumbu
+            btn.textContent = '✓ Dodano';
+            btn.classList.add('dodan');
+            setTimeout(() => {
+                btn.textContent = '🛒 Dodaj';
+                btn.classList.remove('dodan');
+            }, 1800);
+ 
+            // Toast poruka
+            prikaziToast('✅ ' + naziv + ' dodano u košaricu!');
+        }
+ 
+        function prikaziToast(poruka) {
+            const toast = document.getElementById('toast');
+            toast.textContent = poruka;
+            toast.classList.add('vidljiv');
+            setTimeout(() => toast.classList.remove('vidljiv'), 2500);
+        }
+    </script>
