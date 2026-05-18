@@ -1,104 +1,150 @@
 <!DOCTYPE html>
+<html lang="hr">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koturski Jasmini</title>
-    <link rel="stylesheet" href="Koturi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="Koturi.css" rel="stylesheet">
+    <style>
+/* ══════════════════════════════════════
+   RESET & ROOT
+══════════════════════════════════════ */
 
-
-<body>
-    <div class="top-bar">
-        <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
-    
-
-    <nav>
-        <ul>
-            <li><a href="Onama.html">O nama</a></li>
-            <li><a href="Nasa Polja.html">Nasa Polja</a></li>
-            <li><a href="Cvijece.html">Cvijece</a></li>
-            <li><a href="Buketi.html">Buketi</a></li>
-            <li><a href="Lokacija.html">Lokacija</a></li>
-            <li><a href="Kontakt.html">Kontakt</a></li>
-    
-        </ul>
-     
-    </nav>
-           <div>
-    <h1> <a href="index.html">Koturski Jasmini</a></li> </h1>
-    <a href="Kosarica.html" class="kosarica-gumb">
-        🛒 <span>Košarica</span>
-    </a>
-</div>
-    </div>
-</div>
-    
-<p class="dobrodosli">Dobro Došli<p>
- 
-    <!-- Podnaslov ispod hero-a -->
-    <div class="hero-tekst">
-        <p class="hero-podnaslov">🌸 &nbsp; Priroda u svakom cvijetu</p>
-    </div>
- 
-    <h2>O nama</h2>
- 
-    <!-- Uvodni opis -->
-    <div class="uvod-blok">
-        <div class="uvod-citat">
-            Koturski Jasmini je cvjećara s dušom — osnovana s ljubavlju prema prirodi
-            i željom da svakom domu, događaju i poklonu podarimo svježinu, boju i miris
-            najljepšeg cvijeća iz naših polja u Koturima, Hrvatska.
-        </div>
-    </div>
- 
-    <div class="pocetna-razdjelnik"><span>✦</span></div>
- 
-    <!-- Istaknuti proizvodi -->
-    <p class="istaknuto-naslov">Što nudimo</p>
-    <p class="istaknuto-podnaslov">Odaberite ono što vas veseli</p>
- 
-    <div class="istaknuto-grid">
- 
-        <a href="Cvijece.html" class="istaknuto-kartica">
-            <span class="kartica-emoji">🌹</span>
-            <p class="kartica-naziv">Svježe Cvijeće</p>
-            <p class="kartica-opis">Ruže, tulipani, lavanda i još mnogo toga — svježe ubrano s naših polja.</p>
-            <span class="kartica-gumb">Pogledaj →</span>
-        </a>
- 
-        <a href="Buketi.html" class="istaknuto-kartica">
-            <span class="kartica-emoji">💐</span>
-            <p class="kartica-naziv">Buketi</p>
-            <p class="kartica-opis">Ručno izrađeni buketi za svaku prigodu — rođendane, vjenčanja i poklone.</p>
-            <span class="kartica-gumb">Pogledaj →</span>
-        </a>
- 
-        <a href="Nasa Polja.html" class="istaknuto-kartica">
-            <span class="kartica-emoji">🌿</span>
-            <p class="kartica-naziv">Naša Polja</p>
-            <p class="kartica-opis">Posjetite naša cvjetna polja u Koturima i doživi prirodu izbliza.</p>
-            <span class="kartica-gumb">Saznaj više →</span>
-        </a>
- 
-        <a href="Kontakt.html" class="istaknuto-kartica">
-            <span class="kartica-emoji">📞</span>
-            <p class="kartica-naziv">Kontakt</p>
-            <p class="kartica-opis">Naručite po mjeri ili nas kontaktirajte za posebne prilike i aranžmane.</p>
-            <span class="kartica-gumb">Kontaktiraj nas →</span>
-        </a>
- 
-    </div>
- 
-    <div class="pocetna-razdjelnik"><span>✦</span></div>
- 
-    <!-- Završni tagline -->
-    <div class="pocetna-tagline">
-        Koturski Jasmini — gdje priroda cvjeta zajedno s vašim uspomenama. 🌸
-    </div>
- 
-    <div class="cvjetovi-red">🌸 🌿 🌸 🌿 🌸</div>
-
-<footer>&copy; 2026 Škola. Svi propisi iz službenog dokumenta.
-    <li><a href="Kontakt.html">Kontakt</a></li>
-</footer>
+    </style>
 </head>
+<body>
+
+<!-- ═══════════════════ TOP BAR ═══════════════════ -->
+<div class="top-bar">
+
+  <!-- Logo (SVG or fallback) -->
+  <img src="Koturski Jasmini logo.svg" alt="Koturski Jasmini">
+ 
+
+  <nav>
+    <ul>
+      <li><a href="Onama.html">O nama</a></li>
+      <li><a href="Nasa Polja.html">Naša Polja</a></li>
+      <li><a href="Cvijece.html">Cvijeće</a></li>
+      <li><a href="Buketi.html">Buketi</a></li>
+      <li><a href="Lokacija.html">Lokacija</a></li>
+      <li><a href="Kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="topbar-right">
+    <a href="koturski jasmini.html" class="site-title">Koturski Jasmini</a>
+    <a href="Kosarica.html" class="kosarica-gumb">
+      <span>🛒</span>
+      <span>Košarica</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <span class="hero-badge">🌸 &nbsp; Priroda u svakom cvijetu</span>
+
+  <h1 class="hero-title">
+    Dobro<br>
+    <em>Došli</em>
+  </h1>
+
+  <p class="hero-subtitle">Koturi, Hrvatska &nbsp;·&nbsp; Svježe Cvijeće s Polja</p>
+
+  <a href="Cvijece.html" class="hero-cta">
+    Istražite naše cvijeće &nbsp; →
+  </a>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ O NAMA ═══════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">O nama</p>
+    <h2 class="section-heading">Koturski Jasmini</h2>
+
+    <div class="onama-citat">
+      Koturski Jasmini je cvjećara s dušom — osnovana s ljubavlju prema prirodi
+      i željom da svakom domu, događaju i poklonu podarimo svježinu, boju i miris
+      najljepšeg cvijeća iz naših polja u Koturima, Hrvatska.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ DIVIDER ═══════════════════ -->
+<div class="divider"><span>✦</span></div>
+
+
+<!-- ═══════════════════ PONUDA ═══════════════════ -->
+<section class="ponuda-section">
+  <div class="ponuda-inner">
+    <p class="ponuda-label">Što nudimo</p>
+    <h2 class="ponuda-naslov">Odaberite ono što vas veseli</h2>
+
+    <div class="ponuda-grid">
+
+      <a href="Cvijece.html" class="ponuda-kartica">
+        <span class="kartica-emoji">🌹</span>
+        <span class="kartica-naziv">Svježe Cvijeće</span>
+        <span class="kartica-opis">Ruže, tulipani, lavanda i još mnogo toga — svježe ubrano s naših polja.</span>
+        <span class="kartica-gumb">Pogledaj →</span>
+      </a>
+
+      <a href="Buketi.html" class="ponuda-kartica">
+        <span class="kartica-emoji">💐</span>
+        <span class="kartica-naziv">Buketi</span>
+        <span class="kartica-opis">Ručno izrađeni buketi za svaku prigodu — rođendane, vjenčanja i poklone.</span>
+        <span class="kartica-gumb">Pogledaj →</span>
+      </a>
+
+      <a href="Nasa Polja.html" class="ponuda-kartica">
+        <span class="kartica-emoji">🌿</span>
+        <span class="kartica-naziv">Naša Polja</span>
+        <span class="kartica-opis">Posjetite naša cvjetna polja u Koturima i doživite prirodu izbliza.</span>
+        <span class="kartica-gumb">Saznaj više →</span>
+      </a>
+
+      <a href="Kontakt.html" class="ponuda-kartica">
+        <span class="kartica-emoji">📞</span>
+        <span class="kartica-naziv">Kontakt</span>
+        <span class="kartica-opis">Naručite po mjeri ili nas kontaktirajte za posebne prilike i aranžmane.</span>
+        <span class="kartica-gumb">Kontaktiraj nas →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ DIVIDER ═══════════════════ -->
+<div class="divider"><span>✦</span></div>
+
+
+<!-- ═══════════════════ TAGLINE ═══════════════════ -->
+<section class="tagline-section">
+  <div class="tagline-blok">
+    Koturski Jasmini — gdje priroda cvjeta zajedno s vašim uspomenama. 🌸
+  </div>
+</section>
+
+<div class="cvjetovi-red">🌸 🌿 🌸 🌿 🌸</div>
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  &copy; 2026 Koturski Jasmini. Sva prava pridržana.
+  &nbsp;|&nbsp;
+  <a href="Kontakt.html">Kontakt</a>
+</footer>
+
+</body>
+</html>
