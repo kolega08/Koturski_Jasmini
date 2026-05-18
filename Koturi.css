@@ -2009,15 +2009,15 @@ footer {
 .social:hover {
     background: #444;
 }
-.instegram{
-  margin-left: 47rem;
-  display: inline-block;
-  align-content: center;
-  width:max-content;
+.instegram {
+  display: flex;
+  justify-content: center;   /* horizontalno centriranje */
   align-items: center;
-   border-radius: 40px;
-  background: rgba(4, 14, 5, 0.95);
-  color: var(--zelena-muted);
-  text-align: center;
+  gap: 20px;                 /* razmak između ikona */
+  width: 100%;
+  margin-top: 40px;
+
+  border-radius: 40px;
+  background: rgba(4, 14, 5, 0.0);
   padding: 2rem 1rem;
-}
+} 
