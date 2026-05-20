@@ -34,7 +34,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-serif);
-  background: #071a09;
+  background: linear-gradient(135deg, #061a08, #163113, #0a160d, #0c2e0a);
   min-height: 100vh;
   color: var(--zelena-mint);
   overflow-x: hidden;
