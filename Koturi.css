@@ -1639,6 +1639,17 @@ footer {
             animation: fadeIn 0.6s 0.2s ease both;
             margin-bottom: 1.8rem;
         }
+        @media (max-width: 768px) {
+    .lokacija-mapa {
+        border-radius: 14px;
+        margin-bottom: 1rem;
+    }
+
+    .lokacija-mapa img {
+        width: 100%;
+        height: auto;
+    }
+}
  
         .lokacija-mapa iframe {
             width: 100%;
@@ -2021,6 +2032,13 @@ footer {
   background: rgba(4, 14, 5, 0.0);
   padding: 2rem 1rem;
 } 
+@media (max-width: 768px) {
+  .instegram {
+    text-align: center;
+    flex-direction: column;
+    gap: 15px;
+    padding: 1rem 0.5rem;
+  }
 .gumb-lokacija {
   display: inline-block;
   padding: 12px 20px;
